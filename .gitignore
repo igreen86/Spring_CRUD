@@ -1,2 +1,38 @@
-# Project exclude paths
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+**/target/
 /target/
+*/target/*
+.project
+/bin/
+.classpath
+.settings
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+### STS ###
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.log
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
