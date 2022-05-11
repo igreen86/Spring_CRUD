@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete person</title>
+</head>
+<body>
+
+<h2>Delete person</h2>
+<br>
+<form th:action="@{/people/{id}(id=${person.getId()})}" th:method="DELETE" th:object="${person}">
+    Person with id
+    <p th:text="${person.getId()}">Id</p>
+    and name
+    <p th:text="${person.getName()}">Name</p>
+    will be deleted
+    <br><br>
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>
