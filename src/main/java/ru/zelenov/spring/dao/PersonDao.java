@@ -8,8 +8,8 @@ import java.util.List;
 
 @Component
 public class PersonDao {
-  private final List<Person> people;
   private static int peopleCount;
+  private final List<Person> people;
   private final Object lock = new Object();
 
   {
@@ -20,11 +20,11 @@ public class PersonDao {
     people.add(new Person(++peopleCount, "Robert"));
   }
 
-  public List<Person> index() {
+  public List<Person> getPeople() {
     return people;
   }
 
-  public Person show(int id) {
+  public Person getPerson(int id) {
     return people.stream()
             .filter(p -> p.getId() == id)
             .findFirst()
@@ -36,5 +36,9 @@ public class PersonDao {
       person.setId(++peopleCount);
     }
     people.add(person);
+  }
+
+  public void update(int id, Person person) {
+    getPerson(id).setName(person.getName());
   }
 }
