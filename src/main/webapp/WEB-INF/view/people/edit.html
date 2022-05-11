@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit person</title>
+</head>
+<body>
+
+<h2>Edit person</h2>
+<br>
+<form th:action="@{/people/{id}(id=${person.getId()})}" th:method="PATCH" th:object="${person}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br>
+
+    <input type="submit" value="Update"/>
+</form>
+
+</body>
+</html>
