@@ -10,9 +10,9 @@
 <br>
 <form th:action="@{/people/{id}(id=${person.getId()})}" th:method="DELETE" th:object="${person}">
     Person with id
-    <p th:text="${person.getId()}">Id</p>
+    <span th:text="${person.getId()}">Id</span>
     and name
-    <p th:text="${person.getName()}">Name</p>
+    <span th:text="${person.getName()}">Name</span>
     will be deleted
     <br><br>
     <input type="submit" value="Delete"/>

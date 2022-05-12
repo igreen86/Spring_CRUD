@@ -5,11 +5,27 @@
     <title>Person</title>
 </head>
 <body>
-<p th:text="${person.getName()}">Name</p>
-<p th:text="${person.getId()}">Id</p>
+
+<table>
+    <caption><strong>Person info</strong></caption>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+    </tr>
+    <tr>
+        <td><span th:text="${person.getId()}">Id</span></td>
+        <td><span th:text="${person.getName()}">Name</span></td>
+        <td><span th:text="${person.getAge()}">Age</span></td>
+        <td><span th:text="${person.getEmail()}">Email</span></td>
+
+    </tr>
+</table>
+
 
 <a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
-<br>
+<br><br>
 <a th:href="@{/people/{id}/delete(id=${person.getId()})}">Delete Person Page</a>
 <br><br>
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">

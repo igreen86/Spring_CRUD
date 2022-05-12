@@ -2,6 +2,7 @@ package ru.zelenov.spring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.zelenov.spring.dao.PersonDao;
 import ru.zelenov.spring.model.Person;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/people")
@@ -38,14 +41,15 @@ public class PeopleController {
 
   @GetMapping("/new")
   public String newPerson(@ModelAttribute(PERSON_ATTR_NAME) Person person) {
-
     return "people/new";
   }
 
   @PostMapping("")
-  public String create(@ModelAttribute(PERSON_ATTR_NAME) Person person) {
-    if (person.getName().isBlank()) {
-      return "people/new_blank_name";
+  public String create(
+          @ModelAttribute(PERSON_ATTR_NAME) @Valid Person person,
+          BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      return "people/new";
     }
     personDao.save(person);
     return REDIRECT_TO_PEOPLE;
@@ -58,7 +62,13 @@ public class PeopleController {
   }
 
   @PatchMapping("/{id}")
-  public String update(@ModelAttribute(PERSON_ATTR_NAME) Person person, @PathVariable("id") int id) {
+  public String update(
+          @ModelAttribute(PERSON_ATTR_NAME) @Valid Person person,
+          BindingResult bindingResult,
+          @PathVariable("id") int id) {
+    if (bindingResult.hasErrors()) {
+      return "people/edit";
+    }
     personDao.update(id, person);
     return REDIRECT_TO_PEOPLE;
   }
